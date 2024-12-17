@@ -1,7 +1,7 @@
 # NOTE: the sudo invoker _HAS TO BE_ same as the auto-login user
 # Because we need to update that specific user's wayfire configs
 # Ensure making this abundantly clear in the install instuctions
-SITE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
+SITE=/srv
 cd $SITE
 
 [ $(which node) ] || curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
