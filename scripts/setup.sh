@@ -18,8 +18,10 @@ git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
 
 # Set up wayfire autostart config to start up browser & refresher
 cd $USERPROFILE
-mkdir .config
-touch .config/wayfire.ini
+
+if [ ! -f .config/wayfire.ini ]; then
+	touch .config/wayfire.ini
+fi
 
 echo "[autostart]" >> .config/wayfire.ini
 echo "browser = /srv/homehub/scripts/browser.sh" >> .config/wayfire.ini
