@@ -26,7 +26,7 @@ let homehub = {
 }
 
 $(document).ready(() => {
-  $.getJSON('/config/config')
+  $.getJSON('/config/sites')
   .done(homehub.renderPage)
   .fail(homehub.showStatus)
 
@@ -38,16 +38,16 @@ $(document).ready(() => {
   })
 
   $('#execute').on('click', (e) => {
-    let config = {}
-    config.urls = []
+    let sites = {}
+    sites.urls = []
     $('li.list-group-item').each((index, item) => {
-      config.urls.push({ url: $(item).find('a').attr('href') })
+      sites.urls.push({ url: $(item).find('a').attr('href') })
     })
 
     $.ajax({
-      url: '/config',
+      url: '/sites',
       type: 'POST',
-      data: JSON.stringify(config),
+      data: JSON.stringify(sites),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: homehub.showStatus,

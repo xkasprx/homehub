@@ -17,12 +17,12 @@ echo "[autostart]" >> $SITE/.config/wayfire.ini
 echo "browser = $SITE/homehub/scripts/browser.sh" >> $SITE/.config/wayfire.ini
 echo "refresher = bash $SITE/homehub/scripts/refresher.sh" >> $SITE/.config/wayfire.ini
 
-# If HomeHub config doesn't exist, try backup or use sample config
-if [ ! -f $SITE/homehub/config/config.json ]; then
-    if [ -f $SITE/homehub.config.bak ]; then
-        mv homehub.config.bak homehub/config/config.json
+# If HomeHub sites doesn't exist, try backup or use sample sites
+if [ ! -f $SITE/homehub/config/sites.json ]; then
+    if [ -f $SITE/homehub.sites.bak ]; then
+        mv homehub.sites.bak homehub/config/sites.json
     else
-        mv homehub/config/config.json.sample homehub/config/config.json
+        mv homehub/config/sites.json.sample homehub/config/sites.json
     fi
 fi
 

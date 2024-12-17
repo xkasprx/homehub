@@ -7,22 +7,22 @@ const app = exp()
 app.use(exp.static('web'))
 app.use(exp.json())
 
-app.get('/config', (req, res) => {
-  res.sendFile(__dirname + '/config/config.json')
+app.get('/sites', (req, res) => {
+  res.sendFile(__dirname + '/config/sites.json')
 })
 
-app.post('/config', (req, res) => {
-  nfs.writeFile('./config/config.json', JSON.stringify(req.body, null, "  "), err => {
+app.post('/sites', (req, res) => {
+  nfs.writeFile('./config/sites.json', JSON.stringify(req.body, null, "  "), err => {
 	if (err) {
 	  console.error(err)
-	  res.status(500).send('Could not save config.')
+	  res.status(500).send('Could not save sites.')
 	}
 	exe('reboot', err => {
 	  if (err) {
 		console.error(err)
-		res.status(500).send('Could not reboot to apply config. Retry or reboot manually.')
+		res.status(500).send('Could not reboot to apply sites. Retry or reboot manually.')
 	  }
-	  res.status(200).send('New config applied; rebooting for changes to take effect...')
+	  res.status(200).send('New sites applied; rebooting for changes to take effect...')
 	})
   })
 })
