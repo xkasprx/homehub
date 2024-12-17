@@ -1,11 +1,16 @@
-# NOTE: the sudo invoker _HAS TO BE_ same as the auto-login user
-# Because we need to update that specific user's wayfire configs
-# Ensure making this abundantly clear in the install instuctions
 cd /srv
 
 # Install deps (apt update already handled by nodesource script)
 apt install -y git jq wtype
 
+# Check if Node.js is installed, if not, install it
+if ! command -v node &> /dev/null
+then
+	echo "Node.js could not be found, installing..."
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash -
+else
+	echo "Node.js is already installed"
+fi
 
 # Clone the HomeHub repo, or (in case it exits) pull from upstream
 git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
@@ -13,23 +18,11 @@ git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
 # Set up wayfire autostart config to start up browser & refresher
 cd /srv
 mkdir .config
-cd .config
-touch wayfire.ini
+touch .config/wayfire.ini
 
-echo "[autostart]" >> wayfire.ini
-echo "browser = /srv/homehub/scripts/browser.sh" >> wayfire.ini
-echo "refresher = bash /srv/homehub/scripts/refresher.sh" >> wayfire.ini
-
-cd /srv
-
-# If HomeHub sites doesn't exist, try backup or use sample sites
-if [ ! -f /srv/homehub/config/sites.json ]; then
-    if [ -f /srv/homehub.sites.bak ]; then
-        mv homehub.sites.bak homehub/config/sites.json
-    else
-        mv homehub/config/sites.json.sample homehub/config/sites.json
-    fi
-fi
+echo "[autostart]" >> .config/wayfire.ini
+echo "browser = /srv/homehub/scripts/browser.sh" >> .config/wayfire.ini
+echo "refresher = bash /srv/homehub/scripts/refresher.sh" >> .config/wayfire.ini
 
 cd homehub
 
@@ -49,6 +42,5 @@ echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
 echo -e "Visit either of these links to access HomeHub dashboard:"
 echo -e "\t- \033[0;32mhttp://$(hostname)/\033[0m or, \n\t- \033[0;32mhttp://$(hostname -I | cut -d " " -f1)/\033[0m"
 echo -e "If needed, install NVM and NodeJS to manage NodeJS versions using the following commands:"
-echo -e "\t- \033[0;32mcurl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash\033[0m"
 echo -e "Configure link; then apply changes to reboot."
 echo -e "\033[0;31mThe kiosk mode will start on next startup.\033[0m"

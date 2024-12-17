@@ -1,8 +1,5 @@
 cd /srv
 
-mv homehub/config/sites.json homehub.sites.bak
-echo -e "HomeHub sites is backed up to: \033[0;32m/srv/homehub.sites.bak\033[0m"
-
 rm -rf homehub
 echo -e "\033[0;31m1. removed cloned repository.\033[0m"
 

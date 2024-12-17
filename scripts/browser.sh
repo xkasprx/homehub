@@ -1,5 +1,5 @@
 chromium-browser \
-  $(jq -r '.urls | map(.url) | join(" ")' /srv/homehub/config/sites.json) \
+$(jq -r '.site' /srv/homehub/config/settings.json) \
   --kiosk \
   --fast \
   --fast-start \

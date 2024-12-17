@@ -8,11 +8,11 @@ app.use(exp.static('web'))
 app.use(exp.json())
 
 app.get('/sites', (req, res) => {
-  res.sendFile(__dirname + '/config/sites.json')
+  res.sendFile(__dirname + '/config/settings.json')
 })
 
 app.post('/sites', (req, res) => {
-  nfs.writeFile('./config/sites.json', JSON.stringify(req.body, null, "  "), err => {
+  nfs.writeFile('./config/settings.json', JSON.stringify(req.body, null, "  "), err => {
 	if (err) {
 	  console.error(err)
 	  res.status(500).send('Could not save sites.')
