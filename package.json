@@ -1,0 +1,22 @@
+{
+  "name": "homehub",
+  "version": "1.0.0",
+  "description": "Kiosk for Raspberry Pi that displays a locally hosted website.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xkasprx/homehub.git"
+  },
+  "author": "Kaspr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xkasprx/homehub/issues"
+  },
+  "homepage": "https://github.com/xkasprx/homehub#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
