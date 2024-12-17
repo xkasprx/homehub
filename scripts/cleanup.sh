@@ -1,4 +1,4 @@
-SITE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
+SITE=/srv
 cd $SITE
 
 mv homehub/config/sites.json homehub.sites.bak
