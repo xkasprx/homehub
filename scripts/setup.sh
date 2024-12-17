@@ -13,7 +13,8 @@ apt install -y git jq nodejs wtype
 git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
 
 # Set up wayfire autostart config to start up browser & refresher
-mkdir -p $SITE/.config
+cd $SITE
+mkdir .config
 touch $SITE/.config/wayfire.ini
 
 echo "[autostart]" >> $SITE/.config/wayfire.ini
