@@ -1,3 +1,4 @@
+USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
 cd /srv
 
 # Install deps (apt update already handled by nodesource script)
@@ -16,7 +17,7 @@ fi
 git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
 
 # Set up wayfire autostart config to start up browser & refresher
-cd /srv
+cd $USERPROFILE
 mkdir .config
 touch .config/wayfire.ini
 
@@ -24,7 +25,7 @@ echo "[autostart]" >> .config/wayfire.ini
 echo "browser = /srv/homehub/scripts/browser.sh" >> .config/wayfire.ini
 echo "refresher = bash /srv/homehub/scripts/refresher.sh" >> .config/wayfire.ini
 
-cd homehub
+cd /srv/homehub
 
 # Install HomeHub dependencies
 npm i
