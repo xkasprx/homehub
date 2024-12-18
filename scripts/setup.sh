@@ -1,5 +1,6 @@
+# Must not be run as root, but as a sudo user
 USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
-cd /srv
+cd $USERPROFILE
 
 # Install deps (apt update already handled by nodesource script)
 apt install -y git jq wtype
@@ -24,17 +25,17 @@ if [ ! -f .config/wayfire.ini ]; then
 fi
 
 echo "[autostart]" >> .config/wayfire.ini
-echo "browser = /srv/homehub/scripts/browser.sh" >> .config/wayfire.ini
-echo "refresher = bash /srv/homehub/scripts/refresher.sh" >> .config/wayfire.ini
+echo "browser = $USERPROFILE/homehub/scripts/browser.sh" >> .config/wayfire.ini
+echo "refresher = bash $USERPROFILE/homehub/scripts/refresher.sh" >> .config/wayfire.ini
 
-cd /srv/homehub
+cd $USERPROFILE/homehub
 
 # Install HomeHub dependencies
 npm i
 
 # Add dashboard web server to rc.local to autostart on each boot
 sed -i '/^exit/d' /etc/rc.local
-echo "cd /srv/homehub/ && node app.js &" >> /etc/rc.local
+echo "cd $USERPROFILE/homehub/ && node app.js &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
 # Also, start the server without needing to wait for next reboot
