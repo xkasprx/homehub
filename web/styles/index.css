@@ -9,7 +9,6 @@ body {
 .header {
 	background-color: rgb(73, 70, 70);
 	width: 100%;
-	/* height: 150px; */
 	height: 5vw;
 	max-height: 150px;
 	min-height: 25px;
@@ -21,7 +20,7 @@ body {
 .content {
 	background-color: #6A7B8C;
 	width: 100%;
-	height: calc(100vh - 210px);
+	height: calc(100vh - 5vw - 60px);
 	display: flex;
 	flex-direction: row;
 }
