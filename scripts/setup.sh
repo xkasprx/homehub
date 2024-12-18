@@ -1,8 +1,5 @@
 # Must not be run as root, but as a sudo user
 USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
-USERNAME=$SUDO_USER
-
-echo -e "\033[0;35m\nHomeHub installation started as $USERNAME in the $USERPROFILE directory...\033[0m"
 cd $USERPROFILE
 
 # Install deps (apt update already handled by nodesource script)
@@ -42,9 +39,6 @@ echo "exit 0" >> /etc/rc.local
 
 # Also, start the server without needing to wait for next reboot
 node index.js &
-
-# Set the owner and group of all files in the homehub directory to the current user
-sudo chown -R $USERNAME:$USERNAME $USERPROFILE/homehub
 
 # Report the URL with hostname & IP address for dashboard access
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
