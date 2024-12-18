@@ -1,7 +1,7 @@
 {
   "name": "homehub",
   "version": "1.0.0",
-  "description": "Kiosk for Raspberry Pi that displays a locally hosted website.",
+  "description": "Kiosk for Raspberry Pi that displays a locally hosted website. Uses express for backend and React for frontend.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

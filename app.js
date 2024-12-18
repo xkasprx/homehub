@@ -4,10 +4,9 @@ const nfs = require('fs');
 
 const app = express();
 
-app.use(express.static('web'));
 app.use(express.json());
 
-app.post('/update', (req, res) => {
+app.post('/api-update', (req, res) => {
 	nfs.writeFile('./config/settings.json', JSON.stringify(req.body, null, "  "), err => {
 		if (err) {
 			console.error(err)

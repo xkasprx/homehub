@@ -1,0 +1,25 @@
+.content {
+	background-color: #6A7B8C;
+	width: 100%;
+	height: calc(100vh - 5vw - 60px);
+	display: flex;
+	flex-direction: row;
+}
+.leftColumn, .middleColumn, .rightColumn {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.leftColumn {
+	width: 40%;
+}
+.middleColumn {
+	width: 40%;
+}
+.rightColumn {
+	width: 20%;
+}
+.leftContent, .middleContent, .rightContent {
+	height: 100%;
+	border: 1px solid black;
+}

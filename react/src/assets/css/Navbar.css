@@ -1,0 +1,74 @@
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 175px;
+	margin-left: 5px;
+	margin-top: 5px
+}
+.logo img {
+	height: 5vw;
+	max-height: 150px;
+	min-height: 25px;
+}
+.nav {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+}
+.nav ul {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	width: 100%;
+	list-style-type: none;
+	justify-content: space-evenly;
+	padding: 0;
+	margin: 0;
+}
+.nav ul li {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	border-radius: 5px;
+	margin: 5px 50px;
+	background-color: #5A5A5A;
+	cursor: pointer;
+	width: 25%;
+	height: 90%;
+}
+.nav ul .activeTab {
+	background-color: #4682B4;
+}
+.nav ul li a {
+	text-decoration: none;
+	color: white;
+	font-size: 3vw;
+	text-transform: uppercase;
+	font-family: 'Permanent Marker', cursive;
+}
+.refresh{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: 90%;
+	width: 175px;
+	margin-right: 5px;
+	margin-top: 5px
+}
+.refresh i {
+	font-size: 3vw;
+}
+.refresh button {
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
