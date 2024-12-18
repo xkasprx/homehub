@@ -44,5 +44,4 @@ node index.js &
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
 echo -e "Visit either of these links to access HomeHub dashboard:"
 echo -e "\t- \033[0;32mhttp://$(hostname)/\033[0m or, \n\t- \033[0;32mhttp://$(hostname -I | cut -d " " -f1)/\033[0m"
-echo -e "Configure link; then apply changes to reboot."
 echo -e "\033[0;31mThe kiosk mode will start on next startup.\033[0m"
