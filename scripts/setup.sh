@@ -1,43 +1,139 @@
-# Must not be run as root, but as a sudo user
-USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
-cd $USERPROFILE
+#!/bin/bash
 
-# Install deps (apt update already handled by nodesource script)
-apt install -y git jq wtype
+# Get user profile information securely
+user_profile=$(getent passwd $SUDO_USER | cut -d: -f6)
+
+# Welcome message
+echo -e "\033[0;35m\nHomeHub setup\033[0m"
+echo -e "Hello, $SUDO_USER! This script will install HomeHub on your system."
+echo -e "Please make sure you have an active internet connection before proceeding.\n"
+
+# Check root privileges
+if [ "$EUID" -ne 0 ]; then
+  echo -e "\033[0;31mThis script must be run as root. Please run it with sudo.\033[0m"
+  exit 1
+fi
+
+# Install dependencies
+echo Installing APT dependencies
+install_package() {
+  local package_name="$1"
+  if ! command -v "$package_name" &> /dev/null; then
+    echo "Installing $package_name..."
+    sudo apt install -y "$package_name"
+  else
+    echo "$package_name is already installed."
+  fi
+}
+
+# Install required packages
+install_package jq
+install_package wtype
+install_package git
+install_package wayland-protocols
+install_package wayfire
+install_package chromium-browser
 
 # Check if Node.js is installed, if not, install it
 if ! command -v node &> /dev/null
 then
-	echo "Node.js could not be found, installing..."
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash -
+  latest_version=$(curl -L https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+
+  echo "Node.js could not be found, installing NVM Version $latest_version"
+
+  # Install NVM and Node.js
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$latest_version/install.sh | bash -
+
+  # Source NVM to use it in this script
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+  # Install the latest LTS version of Node.js
+  echo "Installing Node.js LTS version"
+  nvm install node
 else
-	echo "Node.js is already installed"
+  echo "Node.js is already installed"
 fi
 
-# Clone the HomeHub repo, or (in case it exits) pull from upstream
-git clone https://github.com/xkasprx/homehub.git || git -C homehub pull
+# Clone HomeHub repository (using shallow clone)
+git clone --depth=1 -c core.autocrlf=input https://github.com/xkasprx/homehub.git "$user_profile/homehub"
 
 # Set up wayfire autostart config to start up browser & refresher
-cd $USERPROFILE
+cd $user_profile
 
-if [ ! -f .config/wayfire.ini ]; then
-	touch .config/wayfire.ini
-fi
+# Directories to create (if not existing)
+config_dirs=(
+  ".config/wayfire"
+  ".config/labwc"
+)
 
-echo "[autostart]" >> .config/wayfire.ini
-echo "browser = $USERPROFILE/homehub/scripts/browser.sh" >> .config/wayfire.ini
+# Files to create (if not existing)
+config_files=(
+  ".config/wayfire.ini"
+  ".config/labwc/autostart"
+)
 
-cd $USERPROFILE/homehub
+# Browser script path (replace with actual path if needed)
+browser_script="$user_profile/homehub/scripts/browser.sh"
+
+# Function to check and create directory
+create_dir() {
+  local dir_path="$1"
+  if [ ! -d "$dir_path" ]; then
+    echo "Creating directory: $dir_path"
+    sudo mkdir -p "$dir_path"
+  fi
+}
+
+# Function to check and create file
+create_file() {
+  local file_path="$1"
+  if [ ! -f "$file_path" ]; then
+    echo "Creating file: $file_path"
+    touch "$file_path"
+  fi
+}
+
+# Create necessary directories
+for dir in "${config_dirs[@]}"; do
+  create_dir "$dir"
+done
+
+# Create necessary files
+for file in "${config_files[@]}"; do
+  create_file "$file"
+done
+
+# Configure Wayfire autostart
+echo "Setting up Wayfire autostart config"
+echo "[autostart]" >> ".config/wayfire.ini"
+echo "browser = $browser_script" >> ".config/wayfire.ini"
+
+# Configure labwc autostart
+echo "Setting up labwc autostart config"
+echo "$browser_script" > ".config/labwc/autostart"
+
+cd $user_profile/homehub
 
 # Install HomeHub dependencies
+echo Installing HomeHub dependencies
 npm i
 
 # Add dashboard web server to rc.local to autostart on each boot
+echo Setting up HomeHub to start on boot
+if [ ! -f /etc/rc.local ]; then
+    echo "#!/bin/sh -e" | sudo tee /etc/rc.local > /dev/null
+    echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
+fi
 sed -i '/^exit/d' /etc/rc.local
-echo "cd $USERPROFILE/homehub/ && node . &" >> /etc/rc.local
-echo "exit 0" >> /etc/rc.local
+echo "cd $user_profile/homehub/ && node . &" | sudo tee -a /etc/rc.local > /dev/null
+echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 
-# Also, start the server without needing to wait for next reboot
+# Ensure rc.local is executable
+sudo chmod +x /etc/rc.local
+
+# Start the HomeHub server
+echo "Starting HomeHub server"
 node index.js &
 
 # Report the URL with hostname & IP address for dashboard access

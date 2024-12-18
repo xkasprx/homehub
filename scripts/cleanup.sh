@@ -1,5 +1,5 @@
-USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
-cd $USERPROFILE
+user_profile=$(getent passwd $SUDO_USER | cut -d: -f6)
+cd $user_profile
 
 rm -rf homehub
 echo -e "\033[0;31m1. removed cloned repository.\033[0m"

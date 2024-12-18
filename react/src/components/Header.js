@@ -4,16 +4,21 @@ import Navbar from "./Navbar";
 import { useState } from "react";
 
 function rebootHomeHub() {
-    fetch('/api/reboot', { method: 'POST' })
+    fetch('http://localhost:3001/api/reboot', { method: 'POST' })
 	.then((response) => {
 		if (response.status === 200) {
-			alert('Rebooting HomeHub...');
+			response.text().then((data) => {
+					alert(data);
+				});
 		}else{
-			alert('Failed to reboot HomeHub.');
+			response.text().then((data) => {
+				alert(data);
+			});
 		}
 	})
 	.catch((error) => {
-		alert('Failed to reboot HomeHub.');
+		console.error('Failed to reboot HomeHub. Please power cycle the HomeHub.', error)
+		alert('Failed to reboot HomeHub. Please power cycle the HomeHub.');
 	});
 }
 
