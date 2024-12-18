@@ -1,5 +1,5 @@
 chromium-browser \
-  $(jq -r '.site' $USERPROFILE/homehub/config/settings.json) \
+  $(jq -r '.site' ~/homehub/config/settings.json) \
   --kiosk \
   --fast \
   --fast-start \
