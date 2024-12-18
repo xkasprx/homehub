@@ -44,7 +44,7 @@ echo "exit 0" >> /etc/rc.local
 node index.js &
 
 # Set the owner and group of all files in the homehub directory to the current user
-chown -R $USERNAME:$USERNAME $USERPROFILE/homehub
+sudo chown -R $USERNAME:$USERNAME $USERPROFILE/homehub
 
 # Report the URL with hostname & IP address for dashboard access
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
