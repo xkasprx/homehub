@@ -34,7 +34,7 @@ npm i
 
 # Add dashboard web server to rc.local to autostart on each boot
 sed -i '/^exit/d' /etc/rc.local
-echo "cd $USERPROFILE/homehub/ && sudo node . &" >> /etc/rc.local
+echo "cd $USERPROFILE/homehub/ && node . &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
 # Also, start the server without needing to wait for next reboot
