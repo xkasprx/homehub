@@ -1,25 +1,49 @@
+[class^="leftContent"],[class^="middleContent"],[class^="rightContent"] {
+    height: 100%;
+    /* border: 1px solid white; */
+}
 .content {
-	background-color: #6A7B8C;
-	width: 100%;
-	height: calc(100vh - 5vw - 60px);
-	display: flex;
-	flex-direction: row;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 5vw - 60px);
+    width: 100%;
 }
-.leftColumn, .middleColumn, .rightColumn {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-}
-.leftColumn {
-	width: 40%;
-}
-.middleColumn {
-	width: 40%;
-}
+.leftColumn,
+.middleColumn,
 .rightColumn {
-	width: 20%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
-.leftContent, .middleContent, .rightContent {
-	height: 100%;
-	border: 1px solid black;
+.leftColumnChores {
+    width: 15%;
 }
+.leftColumnHome {
+    width: 30%;
+}
+.leftColumnMeals {
+    width: 33.33%;
+}
+.leftColumnSettings {
+    width: 15%;
+}
+.middleColumnChores {
+    width: 85%;
+}
+.middleColumnHome {
+    width: 55%;
+}
+.middleColumnMeals {
+    width: 33.33%;
+}
+.middleColumnSettings {
+    width: 85%;
+}
+.rightColumnChores {
+    width: 0;
+}
+.rightColumnHome {
+    width: 15%;
+}
+.rightColumnMeals {    width: 33.33%;}.rightColumnSettings {    width: 0;}

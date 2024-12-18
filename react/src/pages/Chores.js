@@ -6,8 +6,8 @@ import Header from "../components/Header";
 function Chores() {
 	return (
 		<>
-			<Header />
-			<Content page="chores"/>
+			<Header page="Chores" />
+			<Content page="Chores" />
 			<Footer />
 		</>
 	);

@@ -6,8 +6,8 @@ import Header from "../components/Header";
 function Settings() {
 	return (
 		<>
-			<Header />
-			<Content page="settings"/>
+			<Header page="Settings" />
+			<Content page="Settings" />
 			<Footer />
 		</>
 	);

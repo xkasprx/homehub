@@ -1,21 +1,87 @@
 import "../assets/css/Header.css";
 import logo from "../assets/images/homehub.png";
 import Navbar from "./Navbar";
+import { useState } from "react";
 
-function Header() {
-	return (
-		<div className="header">
-			<div className="logo">
-				<img src={logo} alt="HomeHub" />
-			</div>
-			<Navbar />
-			<div className="refresh">
-				<button onClick={() => window.location.reload(true)}>
-					<i className="fas fa-rotate-right"></i>
-				</button>
-			</div>
-		</div>
-	);
+function rebootHomeHub() {
+    fetch('/api/reboot', { method: 'POST' })
+	.then((response) => {
+		if (response.status === 200) {
+			alert('Rebooting HomeHub...');
+		}else{
+			alert('Failed to reboot HomeHub.');
+		}
+	})
+	.catch((error) => {
+		alert('Failed to reboot HomeHub.');
+	});
+}
+
+function Header({ page }) {
+    let [isTouching, setIsTouching] = useState(false);
+    let [touchStartTime, setTouchStartTime] = useState(null);
+    let [startX, setStartX] = useState(null);
+    let [startY, setStartY] = useState(null);
+
+    let handleTouchStart = (e) => {
+		let clientX = e.touches ? e.touches[0].clientX : e.clientX;
+		let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        setIsTouching(true);
+        setTouchStartTime(Date.now());
+		setStartX(clientX);
+		setStartY(clientY);
+    };
+
+    let handleTouchEnd = () => {
+		setIsTouching(false);
+        setTouchStartTime(null);
+        setStartX(null);
+        setStartY(null);
+
+		if (isTouching && Date.now() - touchStartTime >= 15000) {
+            rebootHomeHub();
+        }
+    };
+
+    let handleTouchMove = (e) => {
+        let currentX = e.touches ? e.touches[0].clientX : e.clientX;
+        let currentY = e.touches ? e.touches[0].clientY : e.clientY;
+        let deltaX = Math.abs(currentX - startX);
+        let deltaY = Math.abs(currentY - startY);
+
+        // If the touch moves more than 10 pixels in any direction, cancel the touch
+		if (deltaX > 87.5 || deltaY > (5 * window.innerWidth / 100) / 2) {
+			setIsTouching(false);
+			setTouchStartTime(null);
+			setStartX(null);
+			setStartY(null);
+		}
+    };
+
+    return (
+        <div className="header">
+            <div className="logo">
+                <img
+                    src={logo}
+                    alt="HomeHub"
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    onTouchCancel={handleTouchEnd}
+                    onTouchMove={handleTouchMove}
+                    onMouseDown={handleTouchStart}
+                    onMouseUp={handleTouchEnd}
+                    onMouseLeave={handleTouchMove}
+                />
+            </div>
+            <Navbar page={page} />
+            <div className="refresh">
+                <button onClick={() => window.location.reload(true)}>
+                    <i className="fas fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+    );
 }
 
 export default Header;

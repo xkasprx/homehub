@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 
-app.post('/api-update', (req, res) => {
+app.post('/api/update', (req, res) => {
 	nfs.writeFile('./config/settings.json', JSON.stringify(req.body, null, "  "), err => {
 		if (err) {
 			console.error(err)
@@ -21,6 +21,17 @@ app.post('/api-update', (req, res) => {
 		}
 
 		res.status(200).send('New sites applied; rebooting for changes to take effect...')
+	});
+});
+
+app.post('/api/reboot', (req, res) => {
+	execCommand('sudo reboot', err => {
+		if (err) {
+			console.error(err)
+			res.status(500).send('Could not reboot. Retry or reboot manually.')
+		}
+
+		res.status(200).send('Rebooting...')
 	});
 });
 

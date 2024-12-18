@@ -1,74 +1,63 @@
 .logo {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 175px;
-	margin-left: 5px;
-	margin-top: 5px
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 175px;
 }
 .logo img {
-	height: 5vw;
-	max-height: 150px;
-	min-height: 25px;
+    height: 5vw;
+    max-height: 150px;
+    min-height: 25px;
 }
 .nav {
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-	width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
 }
 .nav ul {
-	display: flex;
-	flex-direction: row;
-	height: 100%;
-	width: 100%;
-	list-style-type: none;
-	justify-content: space-evenly;
-	padding: 0;
-	margin: 0;
-}
-.nav ul li {
-	flex: 1;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	border-radius: 5px;
-	margin: 5px 50px;
-	background-color: #5A5A5A;
-	cursor: pointer;
-	width: 25%;
-	height: 90%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-evenly;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 .nav ul .activeTab {
-	background-color: #4682B4;
+    background-color: #4682B4;
+}
+.nav ul li {
+    align-items: center;
+    background-color: #5A5A5A;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 90%;
+    justify-content: center;
+    margin: 5px 50px;
+    width: 25%;
 }
 .nav ul li a {
-	text-decoration: none;
-	color: white;
-	font-size: 3vw;
-	text-transform: uppercase;
-	font-family: 'Permanent Marker', cursive;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3vw;
+    text-decoration: none;
+    text-transform: uppercase;
 }
-.refresh{
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	height: 90%;
-	width: 175px;
-	margin-right: 5px;
-	margin-top: 5px
-}
-.refresh i {
-	font-size: 3vw;
-}
-.refresh button {
-	background-color: #4CAF50;
-	color: white;
-	border: none;
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
+.refresh {
+    align-items: center;
+    display: flex;
+    height: 90%;
+    justify-content: flex-end;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 175px;
 }

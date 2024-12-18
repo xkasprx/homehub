@@ -6,8 +6,8 @@ import Header from "../components/Header";
 function Home() {
 	return (
 		<>
-			<Header />
-			<Content page="home"/>
+			<Header page="Home" />
+			<Content page="Home" />
 			<Footer />
 		</>
 	);
