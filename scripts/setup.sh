@@ -26,7 +26,6 @@ fi
 
 echo "[autostart]" >> .config/wayfire.ini
 echo "browser = $USERPROFILE/homehub/scripts/browser.sh" >> .config/wayfire.ini
-echo "refresher = bash $USERPROFILE/homehub/scripts/refresher.sh" >> .config/wayfire.ini
 
 cd $USERPROFILE/homehub
 
