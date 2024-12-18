@@ -1,6 +1,6 @@
 # Must not be run as root, but as a sudo user
 USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
-USERNAME=$(who am i | awk '{print $1}')
+USERNAME=$SUDO_USER
 
 echo -e "\033[0;35m\nHomeHub installation started as $USERNAME in the $USERPROFILE directory...\033[0m"
 cd $USERPROFILE
