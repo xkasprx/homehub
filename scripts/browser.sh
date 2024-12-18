@@ -1,5 +1,7 @@
+USERPROFILE=$(cat /etc/passwd | grep /$SUDO_USER: | cut -f6 -d:)
+
 chromium-browser \
-  $(jq -r '.site' /home/pi/homehub/config/settings.json) \
+  $(jq -r '.site' $USERPROFILE/homehub/config/settings.json) \
   --kiosk \
   --fast \
   --fast-start \
