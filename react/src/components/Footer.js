@@ -5,16 +5,25 @@ function Footer() {
 	const [dateTime, setDateTime] = useState("");
 
 	useEffect(() => {
-		let timeInterval = 1000;
-
 		const updateDateTime = () => {
 			let timeOption = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: true };
 			setDateTime(new Date().toLocaleString('en-US', timeOption));
 		};
 
-		const intervalId = setInterval(updateDateTime, timeInterval);
+		updateDateTime();
 
-		return () => clearInterval(intervalId);
+		let secondsUntilNextMinute = 60 - new Date().getSeconds();
+		let intervalId;
+
+		let initialTimeoutId = setTimeout(() => {
+			updateDateTime();
+			intervalId = setInterval(updateDateTime, 60000);
+		}, secondsUntilNextMinute * 1000);
+
+		return () => {
+			clearTimeout(initialTimeoutId);
+			clearInterval(intervalId);
+		};
 	}, []);
 
 	return (
