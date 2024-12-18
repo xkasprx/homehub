@@ -1,6 +1,6 @@
 [class^="leftContent"],[class^="middleContent"],[class^="rightContent"] {
     height: 100%;
-    /* border: 1px solid white; */
+    border: 1px solid white;
 }
 .content {
     background-color: black;
