@@ -64,6 +64,15 @@ else
   echo "serve package is already installed"
 fi
 
+# Install PM2 to manage the Node.js process
+if ! command -v pm2 &> /dev/null
+then
+  echo "Installing PM2"
+  npm i -g pm2
+else
+  echo "PM2 is already installed"
+fi
+
 # Clone HomeHub repository (using shallow clone)
 git clone --depth=1 -c core.autocrlf=input https://github.com/xkasprx/homehub.git "$user_profile/homehub"
 
@@ -135,8 +144,8 @@ if [ ! -f /etc/rc.local ]; then
     echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 fi
 sed -i '/^exit/d' /etc/rc.local
-echo "cd $user_profile/homehub/react && serve -s build &" | sudo tee -a /etc/rc.local > /dev/null
-echo "cd $user_profile/homehub/ && node . &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/react && pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/ && pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
 echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 
 # Ensure rc.local is executable
