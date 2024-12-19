@@ -165,12 +165,6 @@ sudo -u $SUDO_USER pm2 start ecosystem.config.js
 cd $user_profile/homehub/react
 sudo -u $SUDO_USER pm2 start ecosystem.config.js
 
-# Start Wayfire
-echo "Starting Wayfire"
-wayfire &
-sleep 5
-
-
 # Report the URL with hostname & IP address for dashboard access
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
 echo -e "Visit either of these links to access HomeHub dashboard:"
