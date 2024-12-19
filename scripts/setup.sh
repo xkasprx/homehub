@@ -46,7 +46,7 @@ then
 
   # Source NVM to use it in this script
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
   # Install the latest LTS version of Node.js
   echo "Installing Node.js LTS version"
@@ -128,15 +128,6 @@ cd $user_profile/homehub
 echo Installing HomeHub dependencies
 npm i
 
-# Install React dependencies
-echo Installing React dependencies
-cd $user_profile/homehub/react
-npm i
-
-# Build React app
-echo Building React app
-npm run build
-
 # Add dashboard web server to rc.local to autostart on each boot
 echo Setting up HomeHub to start on boot
 if [ ! -f /etc/rc.local ]; then
@@ -144,8 +135,8 @@ if [ ! -f /etc/rc.local ]; then
     echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 fi
 sed -i '/^exit/d' /etc/rc.local
-echo "cd $user_profile/homehub/ && node . &" | sudo tee -a /etc/rc.local > /dev/null
 echo "cd $user_profile/homehub/react && serve -s build &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/ && node . &" | sudo tee -a /etc/rc.local > /dev/null
 echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 
 # Ensure rc.local is executable
@@ -153,6 +144,7 @@ sudo chmod +x /etc/rc.local
 
 # Start the HomeHub server
 echo "Starting HomeHub server"
+serve -s react/build &
 node index.js &
 
 # Report the URL with hostname & IP address for dashboard access
