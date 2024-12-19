@@ -137,6 +137,12 @@ cd $user_profile/homehub
 echo Installing HomeHub dependencies
 npm i
 
+# Remove unneeded files
+cd react
+rm -r public
+rm -r src
+rm package.json
+
 # Add dashboard web server to rc.local to autostart on each boot
 echo Setting up HomeHub to start on boot
 if [ ! -f /etc/rc.local ]; then
