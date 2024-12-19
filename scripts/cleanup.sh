@@ -4,8 +4,9 @@ cd $user_profile
 rm -rf homehub
 echo -e "\033[0;31m1. removed cloned repository.\033[0m"
 
-sed -i "/homehub/d" /etc/rc.local
-echo -e "\033[0;31m2. removed startup run command.\033[0m"
+rm -f .config/systemd/user/homehub.service
+rm -f .config/systemd/user/homehub-react.service
+echo -e "\033[0;31m2. removed systemd service files.\033[0m"
 
 sed -i "/\[autostart\]/d" .config/wayfire.ini
 sed -i "/^browser/d" .config/wayfire.ini
