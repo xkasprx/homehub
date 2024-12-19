@@ -1,0 +1,27 @@
+.settingsScreen {
+	align-items: center;
+	background-image: url('../images/login.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 5vw - 60px);
+	justify-content: center;
+	position: relative;
+}
+.settingsScreen::before {
+	background-color: rgba(0, 0, 0, 0.35);
+	content: '';
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.settingsScreen > * {
+	position: relative;
+	z-index: 2;
+}

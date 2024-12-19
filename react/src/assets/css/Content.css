@@ -1,5 +1,5 @@
 [class^="leftContent"],[class^="middleContent"],[class^="rightContent"] {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     height: 100%;
 }
 .content {
@@ -17,33 +17,38 @@
     height: 100%;
 }
 .leftColumnChores {
-    width: 15%;
+    width: 0;
 }
 .leftColumnHome {
-    width: 30%;
+    width: 25%;
 }
 .leftColumnMeals {
     width: 33.33%;
 }
 .leftColumnSettings {
-    width: 15%;
+    width: 0;
 }
 .middleColumnChores {
-    width: 85%;
+    width: 100%;
 }
 .middleColumnHome {
-    width: 55%;
+    width: 50%;
 }
 .middleColumnMeals {
     width: 33.33%;
 }
 .middleColumnSettings {
-    width: 85%;
+    width: 100%;
 }
 .rightColumnChores {
     width: 0;
 }
 .rightColumnHome {
-    width: 15%;
+    width: 25%;
 }
-.rightColumnMeals {    width: 33.33%;}.rightColumnSettings {    width: 0;}
+.rightColumnMeals {
+	width: 33.33%;
+}
+.rightColumnSettings {
+    width: 0;
+}
