@@ -11,3 +11,6 @@ sed -i "/\[autostart\]/d" .config/wayfire.ini
 sed -i "/^browser/d" .config/wayfire.ini
 sed -i "/^refresher/d" .config/wayfire.ini
 echo -e "\033[0;31m3. removed autostart wayfire config.\033[0m"
+
+sed -i "/$browser_script/d" .config/labwc/autostart
+echo -e "\033[0;31m4. removed autostart labwc config.\033[0m"
