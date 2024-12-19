@@ -55,6 +55,15 @@ else
   echo "Node.js is already installed"
 fi
 
+# Install serve package to serve the React app
+if ! command -v serve &> /dev/null
+then
+  echo "Installing serve package"
+  npm i -g serve
+else
+  echo "serve package is already installed"
+fi
+
 # Clone HomeHub repository (using shallow clone)
 git clone --depth=1 -c core.autocrlf=input https://github.com/xkasprx/homehub.git "$user_profile/homehub"
 
@@ -124,6 +133,10 @@ echo Installing React dependencies
 cd $user_profile/homehub/react
 npm i
 
+# Build React app
+echo Building React app
+npm run build
+
 # Add dashboard web server to rc.local to autostart on each boot
 echo Setting up HomeHub to start on boot
 if [ ! -f /etc/rc.local ]; then
@@ -132,6 +145,7 @@ if [ ! -f /etc/rc.local ]; then
 fi
 sed -i '/^exit/d' /etc/rc.local
 echo "cd $user_profile/homehub/ && node . &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/react && serve -s build &" | sudo tee -a /etc/rc.local > /dev/null
 echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 
 # Ensure rc.local is executable
