@@ -1,5 +1,4 @@
 node_modules/
 package-lock.json
 ecosystem.config.js
-react/build/
 react/node_modules/
