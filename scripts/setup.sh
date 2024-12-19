@@ -143,19 +143,56 @@ rm -r public
 rm -r src
 rm package.json
 
-# Add dashboard web server to rc.local to autostart on each boot
-echo Setting up HomeHub to start on boot
-if [ ! -f /etc/rc.local ]; then
-    echo "#!/bin/sh -e" | sudo tee /etc/rc.local > /dev/null
-    echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
-fi
-sed -i '/^exit/d' /etc/rc.local
-echo "cd $user_profile/homehub/ && sudo -u $SUDO_USER pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
-echo "cd $user_profile/homehub/react && sudo -u $SUDO_USER pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
-echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
+# Create systemd service file for HomeHub
+echo "Creating systemd service file for HomeHub"
+sudo tee /etc/systemd/system/homehub.service > /dev/null <<EOL
+[Unit]
+Description=HomeHub API
+After=network.target
 
-# Ensure rc.local is executable
-sudo chmod +x /etc/rc.local
+[Service]
+User=$SUDO_USER
+WorkingDirectory=$user_profile/homehub
+ExecStart=/usr/bin/pm2 start ecosystem.config.js --no-daemon
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+echo "Creating systemd service file for HomeHub React"
+sudo tee /etc/systemd/system/homehub-react.service > /dev/null <<EOL
+[Unit]
+Description=HomeHub React
+After=network.target
+
+[Service]
+User=$SUDO_USER
+WorkingDirectory=$user_profile/homehub/react
+ExecStart=/usr/bin/pm2 start ecosystem.config.js --no-daemon
+Restart=always
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+EOL
+
+# Enable HomeHub services to start on boot
+echo "Enabling HomeHub services to start on boot"
+sudo systemctl enable homehub.service
+sudo systemctl enable homehub-react.service
+
+# Reload systemd manager configuration
+sudo systemctl daemon-reload
+
+# Enable HomeHub service to start on boot
+sudo systemctl enable homehub.service
+
+# Start HomeHub service
+sudo systemctl start homehub.service
 
 # Start the HomeHub server
 echo "Starting HomeHub server"
