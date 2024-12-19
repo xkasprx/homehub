@@ -137,6 +137,12 @@ cd $user_profile/homehub
 echo Installing HomeHub dependencies
 npm i
 
+# Remove unneeded files
+cd react
+rm -r public
+rm -r src
+rm package.json
+
 # Add dashboard web server to rc.local to autostart on each boot
 echo Setting up HomeHub to start on boot
 if [ ! -f /etc/rc.local ]; then
@@ -154,7 +160,7 @@ sudo chmod +x /etc/rc.local
 # Start the HomeHub server
 echo "Starting HomeHub server"
 sudo -u $SUDO_USER pm2 start ecosystem.config.js
-sudo -u $SUDO_USER pm2 start react/ecosystem.config.js
+sudo -u $SUDO_USER pm2 start ../ecosystem.config.js
 
 
 # Report the URL with hostname & IP address for dashboard access
