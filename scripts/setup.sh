@@ -153,8 +153,9 @@ sudo chmod +x /etc/rc.local
 
 # Start the HomeHub server
 echo "Starting HomeHub server"
-serve -s react/build &
-node index.js &
+pm2 start ecosystem.config.js
+pm2 start react/ecosystem.config.js
+
 
 # Report the URL with hostname & IP address for dashboard access
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
