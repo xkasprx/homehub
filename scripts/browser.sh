@@ -18,11 +18,3 @@ chromium-browser \
 	--disable-composited-antialiasing \
 	--start-maximized
 
-# firefox \
-# 	$(jq -r '.site' ~/homehub/config/settings.json) \
-# 	-k \
-# 	-new-window \
-# 	-maximize \
-# 	-no-remote \
-# 	-P "$(uuidgen)" \
-# 	-foreground
