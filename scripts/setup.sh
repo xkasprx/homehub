@@ -160,7 +160,7 @@ sudo chmod +x /etc/rc.local
 # Start the HomeHub server
 echo "Starting HomeHub server"
 sudo -u $SUDO_USER pm2 start ecosystem.config.js
-sudo -u $SUDO_USER pm2 start react/ecosystem.config.js
+sudo -u $SUDO_USER pm2 start ../ecosystem.config.js
 
 
 # Report the URL with hostname & IP address for dashboard access
