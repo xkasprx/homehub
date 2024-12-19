@@ -181,26 +181,12 @@ WantedBy=multi-user.target
 EOL
 
 # Enable HomeHub services to start on boot
-echo "Enabling HomeHub services to start on boot"
+echo "Starting HomeHub services and require start on boot"
+sudo systemctl daemon-reload
 sudo systemctl enable homehub.service
 sudo systemctl enable homehub-react.service
-
-# Reload systemd manager configuration
-sudo systemctl daemon-reload
-
-# Enable HomeHub service to start on boot
-sudo systemctl enable homehub.service
-
-# Start HomeHub service
 sudo systemctl start homehub.service
-
-# Start the HomeHub server
-echo "Starting HomeHub server"
-cd $user_profile/homehub
-sudo -u $SUDO_USER pm2 start ecosystem.config.js
-
-cd $user_profile/homehub/react
-sudo -u $SUDO_USER pm2 start ecosystem.config.js
+sudo systemctl start homehub-react.service
 
 # Report the URL with hostname & IP address for dashboard access
 echo -e "\033[0;35m\nHomeHub is now installed.\033[0m"
