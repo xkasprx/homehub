@@ -1,9 +1,8 @@
 module.exports = {
   apps : [{
-    name: `HomeHub API`,
-    script: `./app.js`,
+    name: `HomeHub`,
+    script: `serve -s build`,
     watch: true,
-    time: true,
     env: {
       NODE_ENV: `production`,
     },
