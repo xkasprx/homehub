@@ -28,4 +28,4 @@ app.post('/api/update', (req, res) => {
 	res.status(200).send('Settings saved.')
 });
 
-app.listen(3001, console.error);
+app.listen(80, console.error);
