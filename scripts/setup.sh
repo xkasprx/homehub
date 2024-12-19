@@ -150,8 +150,8 @@ if [ ! -f /etc/rc.local ]; then
     echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 fi
 sed -i '/^exit/d' /etc/rc.local
-echo "cd $user_profile/homehub/react && pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
-echo "cd $user_profile/homehub/ && pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/react && sudo -u $SUDO_USER pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
+echo "cd $user_profile/homehub/ && sudo -u $SUDO_USER pm2 start ecosystem.config.js &" | sudo tee -a /etc/rc.local > /dev/null
 echo "exit 0" | sudo tee -a /etc/rc.local > /dev/null
 
 # Ensure rc.local is executable
@@ -160,7 +160,7 @@ sudo chmod +x /etc/rc.local
 # Start the HomeHub server
 echo "Starting HomeHub server"
 sudo -u $SUDO_USER pm2 start $user_profile/homehub/ecosystem.config.js
-sudo -u $SUDO_USER pm2 start $user_profile/homehub/ecosystem.config.js
+sudo -u $SUDO_USER pm2 start $user_profile/homehub/react/ecosystem.config.js
 
 
 # Report the URL with hostname & IP address for dashboard access
