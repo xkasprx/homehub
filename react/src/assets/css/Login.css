@@ -15,7 +15,7 @@
 	background-size: cover;
 	display: flex;
 	flex-direction: column;
-	height: calc(100vh - 5vw - 60px);
+	height: calc(100vh - 6.5vw);
 	justify-content: center;
 	position: relative;
 }
@@ -40,7 +40,7 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: 18vw;
 	justify-content: center;
 }
 
@@ -48,66 +48,67 @@
 .keypadMiddle,
 .keypadTop{
 	display: flex;
-	justify-content: center;
-	margin-bottom: 10px;
+	width: 100%;
+	justify-content: space-between;
+	margin: .25vw;
 }
 
 .keypadZeroClr {
 	display: flex;
 	width: 100%;
 	justify-content: flex-start;
-	margin-bottom: 10px;
+	gap: .25vw;
+	margin: .25vw;
 }
 
 .keypadBox {
 	align-items: center;
 	background-color: #404040;
-	border: 10px solid #303030;
-	border-radius: 25px;
+	border: .5vw solid #303030;
+	border-radius: 5%;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	justify-content: center;
-	margin-bottom: 50px;
-	padding: 20px;
+	padding: 1vw;
 }
 
 .keypadDisplay {
 	align-items: center;
 	background-color: #202020;
-	border: 1px solid #101010;
+	border: .15vw solid #101010;
 	border-radius: 25px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 	display: flex;
-	height: 160px;
+	height: 3vw;
 	justify-content: center;
 	text-align: center;
-	width: 500px;
+	margin-bottom: 1.5vw;
+	width: 15vw;
 }
 
 .keypadDisplay h1 {
-	font-size: 72px;
-	margin: 5px;
+	font-size: 3vw;
+	line-height: 3vw;
+	margin: 1vw;
 	letter-spacing: calc(25% - 1ch);
 	width: 100%;
+	min-height: 3vw;
 }
 
 .keypadNumber {
 	background-color: #90c0f0;
-	border: 5px solid #202020;
+	border: .15vw solid #202020;
 	border-radius: 50%;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 	color: #000080;
 	cursor: pointer;
-	font-size: xxx-large;
-	font-size: 36px;
+	font-size: 2vw;
 	font-weight: 900;
-	height: 160px;
-	line-height: 60px;
-	margin: 5px;
+	height: 4vw;
+	line-height: 3vw;
+	width: 4vw;
 	text-align: center;
 	transition: background-color 0.1s, box-shadow 0.3s;
-	width: 160px;
 }
 
 .keypadNumber:active {
@@ -119,25 +120,24 @@
 
 .loginError {
 	color: #ff0000;
-	font-size: 48px;
-	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 2.5vw;
 }
 
 .loginHeader {
 	color: #ffffff;
-	font-size: 48px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 2.5vw;
 }
 
 .loginSuccess {
 	color: #00ff00;
-	font-size: 48px;
-	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 2.5vw;
 }
 
 .loginTitle {
 	display: flex;
 	flex-direction: column;
-	height: 160px;
-	margin: 160px;
 	text-align: center;
 }

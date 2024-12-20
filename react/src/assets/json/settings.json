@@ -1,3 +1,29 @@
 {
-	"adminCode": "1111"
+	"codes": [
+		{
+			"name": "Daniel",
+			"code": "1054",
+			"role": "admin"
+		}, {
+			"name": "Destanea",
+			"code": "0708",
+			"role": "user"
+		}
+	],
+	"location": {
+		"zip": "79602",
+		"city": "Abilene",
+		"state": "TX",
+		"country": "USA",
+		"coordX": "32.4487",
+		"coordY": "-99.7331"
+	},
+	"test": {
+		"zip": "30467",
+		"city": "Sylvania",
+		"state": "GA",
+		"country": "USA",
+		"coordX": "32.7503",
+		"coordY": "-81.6326"
+	}
 }

@@ -12,17 +12,38 @@ function MiddleContent({page}) {
 		let currentLoggedIn = localStorage.getItem("loggedIn");
 		return currentLoggedIn === "true";
 	});
+	let [isAdmin, setIsAdmin] = useState(() => {
+		let currentIsAdmin = localStorage.getItem("isAdmin");
+		return currentIsAdmin === "true";
+	});
+	let [currentUser, setCurrentUser] = useState(() => {
+		return localStorage.getItem("username") || '';
+	});
 
 	useEffect(() => {
 		localStorage.setItem("loggedIn", loggedIn);
-		console.log("loggedIn changed to " + loggedIn);
-		// This will run when loggedIn changes
-	}, [loggedIn]);
+		localStorage.setItem("isAdmin", isAdmin);
+		localStorage.setItem("username", currentUser);
 
-	
+		if (page !== "Settings" && page !== "Admin") {
+			setLoggedIn(false);
+			setIsAdmin(false);
+			setCurrentUser('');
+		}
+	}, [loggedIn, isAdmin, currentUser, page]);
+
+	let authProps = {
+		loggedIn,
+		setLoggedIn,
+		isAdmin,
+		setIsAdmin,
+		currentUser,
+		setCurrentUser
+	};
+
 	return (
 		<div className="middleContent">
-			{page === "Home" ? <><Calendar /><Album /></> : page === "Chores" ? <Chart /> : page === "Meals" ? <Planner /> : page === "Settings" ? loggedIn ? <Settings loggedIn={loggedIn} setLoggedIn={setLoggedIn} /> : <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/> : null}
+			{page === "Home" ? <><Calendar /><Album /></> : page === "Chores" ? <Chart /> : page === "Meals" ? <Planner /> : page === "Settings" ? loggedIn ? <Settings {...authProps} /> : <Login {...authProps} /> : null}
 		</div>
 	);
 }

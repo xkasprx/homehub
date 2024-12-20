@@ -1,0 +1,9 @@
+.weatherData {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}

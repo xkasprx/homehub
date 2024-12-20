@@ -55,7 +55,6 @@ function Header({ page }) {
         let deltaX = Math.abs(currentX - startX);
         let deltaY = Math.abs(currentY - startY);
 
-        // If the touch moves more than 10 pixels in any direction, cancel the touch
 		if (deltaX > 87.5 || deltaY > (5 * window.innerWidth / 100) / 2) {
 			setIsTouching(false);
 			setTouchStartTime(null);

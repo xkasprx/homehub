@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Chores from './pages/Chores';
 import Meals from './pages/Meals';
 import Settings from './pages/Settings';
+import Admin from './pages/Admin';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from 'react';
 
@@ -22,6 +23,7 @@ function App() {
 					<Route path="/chores" element={<Chores />} />
 					<Route path="/meals" element={<Meals />} />
 					<Route path="/settings" element={<Settings />} />
+					<Route path="/admin" element={<Admin />} />
 				</Routes>
 			</BrowserRouter>
 		</>
