@@ -2,6 +2,8 @@ const express = require('express');
 const execCommand = require('child_process').exec;
 const cors = require('cors');
 const nfs = require('fs');
+const settings = require(`./react/src/assets/json/settings.json`);
+const ical = require('ical.js');
 
 const app = express();
 app.use(cors());
@@ -26,6 +28,23 @@ app.post('/api/update', (req, res) => {
 	// 	}
 	// });
 	res.status(200).send('Settings saved.')
+});
+
+app.get('/api/calendar', async (req, res) => {
+	console.log('Fetching calendar...');
+    try {
+        const webcalUrl = settings.calendar.replace("webcal://", "https://");
+        const response = await fetch(webcalUrl);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.text();
+
+        res.status(200).send(data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Could not fetch calendar.');
+    }
 });
 
 app.listen(3001, console.error);

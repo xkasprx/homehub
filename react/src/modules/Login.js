@@ -7,7 +7,7 @@ function Login(props) {
     let [error, setError] = useState(false);
     let [success, setSuccess] = useState(false);
 
-	let adminCodes = settings.codes.reduce((acc, item) => {
+	let adminCodes = settings.parents.reduce((acc, item) => {
 		acc[item.code] = { name: item.name, role: item.role };
 		return acc;
 	}, {});

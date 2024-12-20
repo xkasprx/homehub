@@ -1,6 +1,6 @@
 import "../assets/css/MiddleContent.css";
 import Calendar from "../modules/Calendar";
-import Album from "../modules/Album";
+import Tracker from "../modules/Tracker";
 import Chart from "../modules/Chart";
 import Planner from "../modules/Planner";
 import Login from "../modules/Login";
@@ -43,7 +43,7 @@ function MiddleContent({page}) {
 
 	return (
 		<div className="middleContent">
-			{page === "Home" ? <><Calendar /><Album /></> : page === "Chores" ? <Chart /> : page === "Meals" ? <Planner /> : page === "Settings" ? loggedIn ? <Settings {...authProps} /> : <Login {...authProps} /> : null}
+			{page === "Home" ? <><Calendar /><Tracker /></> : page === "Chores" ? <Chart /> : page === "Meals" ? <Planner /> : page === "Settings" ? loggedIn ? <Settings {...authProps} /> : <Login {...authProps} /> : null}
 		</div>
 	);
 }

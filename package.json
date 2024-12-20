@@ -18,6 +18,7 @@
   "homepage": "https://github.com/xkasprx/homehub#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "ical.js": "^2.1.0"
   }
 }

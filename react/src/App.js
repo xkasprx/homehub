@@ -14,7 +14,33 @@ function App() {
 		setInterval(function() {
 			window.location.reload(true);
 		}, refreshInterval);
+
+		let handleContextMenu = (event) => {
+			event.preventDefault();
+		};
+
+		document.addEventListener('contextmenu', handleContextMenu);
+		
+		let handleMouseDown = (event) => {
+			if (event.detail > 1) {
+				event.preventDefault();
+			}
+		};
+
+		let handleSelectStart = (event) => {
+			event.preventDefault();
+		};
+
+		document.addEventListener('mousedown', handleMouseDown);
+		document.addEventListener('selectstart', handleSelectStart);
+		
+		return () => {
+			document.removeEventListener('contextmenu', handleContextMenu);
+			document.removeEventListener('mousedown', handleMouseDown);
+			document.removeEventListener('selectstart', handleSelectStart);
+		};
 	}, []);
+	
 	return (
 		<>
 			<BrowserRouter>

@@ -52,40 +52,40 @@ function Settings(props) {
 		}
 	};
 
-	// useEffect(() => {
-	// 	let timer;
+	useEffect(() => {
+		let timer;
 
-	// 	let resetTimer = () => {
-	// 		clearTimeout(timer);
-	// 		timer = setTimeout(() => {
-	// 			props.setLoggedIn(false);
-	// 			window.location.href = "/";
-	// 		}, 120000);
-	// 	};
+		let resetTimer = () => {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				props.setLoggedIn(false);
+				window.location.href = "/";
+			}, 120000);
+		};
 
-	// 	let handleActivity = () => {
-	// 		resetTimer();
-	// 	};
+		let handleActivity = () => {
+			resetTimer();
+		};
 
-	// 	window.addEventListener("scroll", handleActivity);
-	// 	window.addEventListener("click", handleActivity);
-	// 	window.addEventListener("mousemove", handleActivity);
-	// 	window.addEventListener("keypress", handleActivity);
-	// 	window.addEventListener("touchstart", handleActivity);
-	// 	window.addEventListener("touchmove", handleActivity);
+		window.addEventListener("scroll", handleActivity);
+		window.addEventListener("click", handleActivity);
+		window.addEventListener("mousemove", handleActivity);
+		window.addEventListener("keypress", handleActivity);
+		window.addEventListener("touchstart", handleActivity);
+		window.addEventListener("touchmove", handleActivity);
 
-	// 	resetTimer();
+		resetTimer();
 
-	// 	return () => {
-	// 		clearTimeout(timer);
-	// 		window.removeEventListener("scroll", handleActivity);
-	// 		window.removeEventListener("click", handleActivity);
-	// 		window.removeEventListener("mousemove", handleActivity);
-	// 		window.removeEventListener("keypress", handleActivity);
-	// 		window.removeEventListener("touchstart", handleActivity);
-	// 		window.removeEventListener("touchmove", handleActivity);
-	// 	};
-	// }, [props]);
+		return () => {
+			clearTimeout(timer);
+			window.removeEventListener("scroll", handleActivity);
+			window.removeEventListener("click", handleActivity);
+			window.removeEventListener("mousemove", handleActivity);
+			window.removeEventListener("keypress", handleActivity);
+			window.removeEventListener("touchstart", handleActivity);
+			window.removeEventListener("touchmove", handleActivity);
+		};
+	}, [props]);
 
 	return (
 		<div className="settingsScreen">

@@ -1,0 +1,86 @@
+.calendar {
+	width: calc(100% - 20px);
+	margin: 0 10px;
+	border: 1px solid #b2dfdb;
+	overflow: hidden;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+	background-color: #000000;
+}
+.calendar-container {
+	background-color: rgba(51, 99, 161, 0.5);
+}
+
+.calendar-header {
+	background-color: #b2dfdb;
+	padding: 16px;
+	text-align: center;
+	border-bottom: 1px solid #00796b;
+}
+
+.calendar-header h2 {
+	margin: 0;
+	font-size: 1.5em;
+}
+
+.calendar-body {
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+
+.calendar-days, .calendar-dates {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 8px;
+}
+
+.calendar-day-name, .calendar-date {
+	text-align: center;
+	padding: 8px;
+	border-radius: 4px;
+}
+
+.calendar-day-name {
+	font-weight: bold;
+	background-color: turquoise;
+}
+.calendar-day-name:first-child,
+.calendar-day-name:last-child {
+	background-color: lightcoral;
+}
+
+.calendar-date {
+	background-color: #ffe0b2;
+    position: relative;
+	border: 1px solid #ff9800;
+}
+
+.calendar-date:not(:empty):hover {
+	background-color: #f0f0f0;
+	cursor: pointer;
+}
+.isToday {
+	background-color: lightblue;
+	border: 1px solid #2196f3;
+}
+
+.icon-top-left {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.icon-top-right {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.birthday-icon {
+    color: #ff69b4;
+}

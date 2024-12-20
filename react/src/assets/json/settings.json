@@ -1,13 +1,15 @@
 {
-	"codes": [
+	"parents": [
 		{
 			"name": "Daniel",
 			"code": "1054",
-			"role": "admin"
+			"role": "admin",
+			"dob": "07-09-1988"
 		}, {
 			"name": "Destanea",
 			"code": "0708",
-			"role": "user"
+			"role": "user",
+			"dob": "09-12-1991"
 		}
 	],
 	"location": {
@@ -18,12 +20,196 @@
 		"coordX": "32.4487",
 		"coordY": "-99.7331"
 	},
-	"test": {
-		"zip": "30467",
-		"city": "Sylvania",
-		"state": "GA",
-		"country": "USA",
-		"coordX": "32.7503",
-		"coordY": "-81.6326"
-	}
+	"kids": [
+		{
+			"name": "River",
+			"dob": "10-21-2013",
+			"chores": [
+				{
+					"task": "clean room",
+					"status": "incomplete"
+				}
+			],
+			"points": 0
+		}, {
+			"name": "Zeke",
+			"dob": "11-03-2015",
+			"chores": [
+				{
+					"task": "clean room",
+					"status": "incomplete"
+				}
+			],
+			"points": 0
+		}, {
+			"name": "Bryden",
+			"dob": "07-26-217",
+			"chores": [
+				{
+					"task": "clean room",
+					"status": "incomplete"
+				}
+			],
+			"points": 0
+		}, {
+			"name": "Mira",
+			"dob": "11-08-2018",
+			"chores": [
+				{
+					"task": "clean room",
+					"status": "incomplete"
+				}
+			],
+			"points": 0
+		}, {
+			"name": "Alexandria",
+			"dob": "12-14-2022",
+			"chores": [],
+			"points": 0
+		}
+	],
+	"holidays": [
+		{
+			"date": "01-01",
+			"icon": "fas fa-glass-cheers",
+			"name": "New Year's Day"
+		},
+		{
+			"date": "01-18",
+			"icon": "fas fa-balance-scale",
+			"name": "Martin Luther King Jr. Day"
+		},
+		{
+			"date": "02-15",
+			"icon": "fas fa-gavel",
+			"name": "Presidents' Day"
+		},
+		{
+			"date": "05-31",
+			"icon": "fas fa-cross",
+			"name": "Memorial Day"
+		},
+		{
+			"date": "07-04",
+			"icon": "fas fa-fireworks",
+			"name": "Independence Day"
+		},
+		{
+			"date": "09-06",
+			"icon": "fas fa-briefcase",
+			"name": "Labor Day"
+		},
+		{
+			"date": "10-11",
+			"icon": "fas fa-ship",
+			"name": "Columbus Day"
+		},
+		{
+			"date": "11-11",
+			"icon": "fas fa-medal",
+			"name": "Veterans Day"
+		},
+		{
+			"date": "11-25",
+			"icon": "fas fa-turkey",
+			"name": "Thanksgiving Day"
+		},
+		{
+			"date": "12-24",
+			"icon": "fas fa-gift",
+			"name": "Christmas Eve"
+		},
+		{
+			"date": "12-25",
+			"icon": "fas fa-tree",
+			"name": "Christmas Day"
+		},
+		{
+			"date": "12-31",
+			"icon": "fas fa-glass-cheers",
+			"name": "New Year's Eve"
+		}
+	],
+	"months": [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December"
+	],
+	"days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+	"directionToDegrees": {
+		"n": {
+			"head": "0",
+			"tail": "180"
+		},
+		"nne": {
+			"head": "22.5",
+			"tail": "202.5"
+		},
+		"ne": {
+			"head": "45",
+			"tail": "225"
+		},
+		"ene": {
+			"head": "67.5",
+			"tail": "247.5"
+		},
+		"e": {
+			"head": "90",
+			"tail": "270"
+		},
+		"ese": {
+			"head": "112.5",
+			"tail": "292.5"
+		},
+		"se": {
+			"head": "135",
+			"tail": "315"
+		},
+		"sse": {
+			"head": "157.5",
+			"tail": "337.5"
+		},
+		"s": {
+			"head": "180",
+			"tail": "0"
+		},
+		"ssw": {
+			"head": "202.5",
+			"tail": "22.5"
+		},
+		"sw": {
+			"head": "225",
+			"tail": "45"
+		},
+		"wsw": {
+			"head": "247.5",
+			"tail": "67.5"
+		},
+		"w": {
+			"head": "270",
+			"tail": "90"
+		},
+		"wnw": {
+			"head": "292.5",
+			"tail": "112.5"
+		},
+		"nw": {
+			"head": "315",
+			"tail": "135"
+		},
+		"nnw": {
+			"head": "337.5",
+			"tail": "157.5"
+		}
+	},
+	"calendar": "webcal://p158-caldav.icloud.com/published/2/MTM1OTYxNDAxNzEzNTk2MYqiGEVuhNJ-Oba1BUdHBvESAXRbH937V8-EF8k1JFFADv0SEoCnQM7UA3fR9yu74lRViv04psG__6rhYY47Vek"
 }

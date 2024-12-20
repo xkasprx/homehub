@@ -1,9 +1,151 @@
-.weatherData {
+.compass {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	color: white;
+	justify-content: center;
+}
+.compassRose {
+	height: 8vw;
+	position: relative;
+	right: 10px;
+}
+.forecast {
+	background-color: rgba(51, 99, 161, 0.5);
+	display: flex;
+	flex-direction: column;
+	height: 52.5%;
+	justify-content: space-between;
+}
+.forecast h1,
+.forecast p {
+	margin: 10px 10px 0 10px;
+}
+.forecastGrid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 1fr;
+	padding: 5px 0;
+}
+.forecastPeriod {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	background-size: cover;
+	border-bottom: 1.5px solid black;
+	border-left: 1.5px solid black;
+	border-top: 1.5px solid black;
+}
+.forecastPeriod:first-child {
+	border-left: none;
+}
+.forecastPeriod:last-child {
+	border-right: none;
+}
+.forecastPeriod h2 {
+	font-size: .8vw;
+	margin: 0;
+	padding: 0 0 1vw .25vw;
+}
+.forecastPeriod p {
+	font-size: .75vw;
+	margin: 0;
+	/* padding: 0 5px; */
+	text-align: right;
+}
+.forecastPeriod p:last-child {
+	padding-bottom: 15px;
+}
+.pin {
+	position: absolute;
+	width: 5px; 
+	height: 5px;
+	background-color: black;
+	border-radius: 50%;
+	/* left: 50%; */
+	margin-right: 20px;
+	/* transform: translate(-50%, -50%) */
+}
+.redWindVane {
+	background-color: #ff0000;
+	height: 4vw;
+	margin-right: 16.5px;
+	position: absolute;
+	transform-origin: bottom center;
+	width: 3px;
+}
+.refreshDate {
+	align-self: flex-end;
+}
+.refreshDate p {
+	font-size: .75vw;
+	margin: 0;
+	padding: 0;
+}
+.weatherData {
+	background-repeat: no-repeat;
+	background-size: 100% 45%;
+	color: white;
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	justify-content: flex-end;
+}
+.weatherFooter {
+	background-color: rgba(51, 99, 161, 0.5);
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	padding-top: 5px;
+}
+.weatherLoading {
+	align-items: center;
+	color: #ffffff;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+}
+.weatherLoading::after {
+	animation: spin 1s linear infinite;
+	border: 4px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	border-top: 4px solid #ffffff;
+	content: "";
+	height: 40px;
+	margin: 20px auto;
+	width: 40px;
+}
+.whiteWindVane {
+	background-color: #ffffff;
+	height: 3.75vw;
+	margin-right: 16.5px;
+	position: absolute;
+	transform-origin: bottom center;
+	width: 3px;
+}
+.windInfo {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+.windInfo p {
+	font-size: .75vw;
+}
+.windInfoContainer {
+	align-items: flex-end;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
