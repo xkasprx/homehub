@@ -15,16 +15,15 @@ function Events() {
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data);
-
                 const jcalData = ICAL.parse(data);
                 const comp = new ICAL.Component(jcalData);
                 const vevents = comp.getAllSubcomponents("vevent");
-                const today = new Date().toISOString().split("T")[0];
+                const today = new Date();
                 const todaysEvents = vevents.filter(event => {
                     const vevent = new ICAL.Event(event);
-                    const eventDate = vevent.startDate.toJSDate().toISOString().split("T")[0];
-                    return eventDate === today;
+                    const eventStartDate = vevent.startDate.toJSDate();
+                    const eventEndDate = vevent.endDate.toJSDate();
+                    return eventStartDate <= today && eventEndDate >= today;
                 });
                 setEvents(todaysEvents);
             })
@@ -42,19 +41,21 @@ function Events() {
 
     return (
         <div className="events">
-            {events.length === 0 ? (
-                <p className="noEvents">No Events</p>
+            {events.length > 0 ? (
+                events.map((event, index) => {
+                    const vevent = new ICAL.Event(event);
+
+					return (
+                        <div key={index} className="event">
+                            <h3 className="eventTitle">{vevent.summary || "No summary"}</h3>
+                            <p className="eventDescription">{vevent.description || "No description"}</p>
+                            <p className="eventStartDate">{vevent.startDate ? vevent.startDate.toString() : "No start date"}</p>
+                            <p className="eventEndDate">{vevent.endDate ? vevent.endDate.toString() : "No end date"}</p>
+                        </div>
+                    );
+                })
             ) : (
-                <ul className="eventList">
-                    {events.map((event, index) => {
-                        const vevent = new ICAL.Event(event);
-                        return (
-                            <li key={index} className="event">
-                                {vevent.summary} - {vevent.startDate.isDate ? "All Day" : new Date(vevent.startDate.toJSDate()).toLocaleTimeString()}
-                            </li>
-                        );
-                    })}
-                </ul>
+                <p className="events">No events for today.</p>
             )}
         </div>
     );

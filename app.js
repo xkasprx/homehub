@@ -31,7 +31,6 @@ app.post('/api/update', (req, res) => {
 });
 
 app.get('/api/calendar', async (req, res) => {
-	console.log('Fetching calendar...');
     try {
         const webcalUrl = settings.calendar.replace("webcal://", "https://");
         const response = await fetch(webcalUrl);
